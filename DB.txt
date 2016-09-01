@@ -1,0 +1,7 @@
+create table Account_transactions(transaction_id number(20) PRIMARY KEY, account_number number(16) NOT NULL, transaction_type varchar(10) NOT NULL, amount numeric(15,2) NOT NULL, remarks varchar(20), transaction_date date);
+
+
+create table Account(user_id varchar(25), account_number number(16), isactive number(1) CHECK(isactive>=0 AND isactive<=1), isloggedin number(1)CHECK(isloggedin>=0 AND isloggedin<=1), isbelowminbalance number(1) CHECK(isbelowminbalance>=0 AND isbelowminbalance<=1), account_balance numeric(15,2), transaction_date date, constraint p_key PRIMARY KEY(user_id));
+
+
+create table User_Detail(first_name varchar(20) NOT NULL, last_name varchar(20), user_id varchar(20) NOT NULL , phone_number number(15), email varchar(30), dob date NOT NULL , address varchar(50) NOT NULL, security_question varchar(50) NOT NULL, security_answer varchar(200) NOT NULL, CONSTRAINT detail_pk PRIMARY KEY(phone_number, email), constraint fk_detail_key FOREIGN KEY(user_id) references Account(user_id));
